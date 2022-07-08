@@ -1,6 +1,10 @@
 ﻿namespace TravelExpertsApp
 {
+<<<<<<<< HEAD:TravelExpertsApp/frm.ProductsAddEdit.Designer.cs
     partial class frm
+========
+    partial class frmMain
+>>>>>>>> 46be6afa3c7cac5936bc0123006dc22929c66b78:TravelExpertsApp/frmMain.Designer.cs
     {
         /// <summary>
         /// Required designer variable.
