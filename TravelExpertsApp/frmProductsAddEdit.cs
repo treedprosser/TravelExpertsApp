@@ -51,6 +51,8 @@ namespace TravelExpertsApp
             if (isAdd)
             {
                 product = new Product();
+                product.ProductId = Convert.ToInt32(txtProductID.Text);
+                product.ProdName = txtProductName.Text;
             }
             db.Dispose();
             this.Close();
