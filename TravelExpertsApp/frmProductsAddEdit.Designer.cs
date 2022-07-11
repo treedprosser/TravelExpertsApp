@@ -29,15 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblProductID = new System.Windows.Forms.Label();
-            this.txtProductID = new System.Windows.Forms.TextBox();
-            this.lblProductName = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
+            this.lblProductName = new System.Windows.Forms.Label();
+            this.txtProductID = new System.Windows.Forms.TextBox();
+            this.lblProductID = new System.Windows.Forms.Label();
             this.btn_OK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.dgvProducts = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -53,21 +51,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Product Information";
             // 
-            // lblProductID
+            // txtProductName
             // 
-            this.lblProductID.AutoSize = true;
-            this.lblProductID.Location = new System.Drawing.Point(6, 42);
-            this.lblProductID.Name = "lblProductID";
-            this.lblProductID.Size = new System.Drawing.Size(90, 21);
-            this.lblProductID.TabIndex = 0;
-            this.lblProductID.Text = "Product ID: ";
-            // 
-            // txtProductID
-            // 
-            this.txtProductID.Location = new System.Drawing.Point(134, 39);
-            this.txtProductID.Name = "txtProductID";
-            this.txtProductID.Size = new System.Drawing.Size(236, 29);
-            this.txtProductID.TabIndex = 1;
+            this.txtProductName.Location = new System.Drawing.Point(134, 112);
+            this.txtProductName.Name = "txtProductName";
+            this.txtProductName.Size = new System.Drawing.Size(236, 29);
+            this.txtProductName.TabIndex = 3;
             // 
             // lblProductName
             // 
@@ -78,12 +67,21 @@
             this.lblProductName.TabIndex = 2;
             this.lblProductName.Text = "Product Name:";
             // 
-            // txtProductName
+            // txtProductID
             // 
-            this.txtProductName.Location = new System.Drawing.Point(134, 112);
-            this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(236, 29);
-            this.txtProductName.TabIndex = 3;
+            this.txtProductID.Location = new System.Drawing.Point(134, 39);
+            this.txtProductID.Name = "txtProductID";
+            this.txtProductID.Size = new System.Drawing.Size(236, 29);
+            this.txtProductID.TabIndex = 1;
+            // 
+            // lblProductID
+            // 
+            this.lblProductID.AutoSize = true;
+            this.lblProductID.Location = new System.Drawing.Point(6, 42);
+            this.lblProductID.Name = "lblProductID";
+            this.lblProductID.Size = new System.Drawing.Size(90, 21);
+            this.lblProductID.TabIndex = 0;
+            this.lblProductID.Text = "Product ID: ";
             // 
             // btn_OK
             // 
@@ -104,34 +102,23 @@
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // dgvProducts
-            // 
-            this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProducts.Location = new System.Drawing.Point(430, 29);
-            this.dgvProducts.Name = "dgvProducts";
-            this.dgvProducts.RowTemplate.Height = 25;
-            this.dgvProducts.Size = new System.Drawing.Size(244, 272);
-            this.dgvProducts.TabIndex = 3;
-            // 
             // frmProductsAddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(697, 313);
-            this.Controls.Add(this.dgvProducts);
+            this.ClientSize = new System.Drawing.Size(440, 313);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btn_OK);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmProductsAddEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add or Modify Products";
             this.Load += new System.EventHandler(this.frmProductsAddEdit_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -145,6 +132,5 @@
         private Label lblProductID;
         private Button btn_OK;
         private Button btnCancel;
-        private DataGridView dgvProducts;
     }
 }
