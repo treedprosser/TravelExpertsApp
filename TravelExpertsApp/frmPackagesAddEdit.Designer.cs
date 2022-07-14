@@ -46,17 +46,17 @@
 			this.label10 = new System.Windows.Forms.Label();
 			this.add_button = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.endDate_txt = new System.Windows.Forms.TextBox();
+			this.startDate_txt = new System.Windows.Forms.TextBox();
 			this.cancel_button = new System.Windows.Forms.Button();
 			this.ok_button = new System.Windows.Forms.Button();
 			this.message_label = new System.Windows.Forms.Label();
-			this.startDate_txt = new System.Windows.Forms.TextBox();
-			this.endDate_txt = new System.Windows.Forms.TextBox();
 			this.groupBox1.SuspendLayout();
-			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
+			this.groupBox2.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -216,6 +216,17 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Products";
 			// 
+			// groupBox3
+			// 
+			this.groupBox3.Controls.Add(this.products_list);
+			this.groupBox3.Controls.Add(this.remove_button);
+			this.groupBox3.Location = new System.Drawing.Point(232, 22);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(213, 254);
+			this.groupBox3.TabIndex = 1;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Included products";
+			// 
 			// groupBox2
 			// 
 			this.groupBox2.Controls.Add(this.product_box);
@@ -229,17 +240,6 @@
 			this.groupBox2.TabIndex = 0;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Add product";
-			// 
-			// groupBox3
-			// 
-			this.groupBox3.Controls.Add(this.products_list);
-			this.groupBox3.Controls.Add(this.remove_button);
-			this.groupBox3.Location = new System.Drawing.Point(232, 22);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(213, 254);
-			this.groupBox3.TabIndex = 1;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Included products";
 			// 
 			// groupBox4
 			// 
@@ -261,6 +261,20 @@
 			this.groupBox4.TabIndex = 22;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Package information";
+			// 
+			// endDate_txt
+			// 
+			this.endDate_txt.Location = new System.Drawing.Point(6, 239);
+			this.endDate_txt.Name = "endDate_txt";
+			this.endDate_txt.Size = new System.Drawing.Size(200, 23);
+			this.endDate_txt.TabIndex = 13;
+			// 
+			// startDate_txt
+			// 
+			this.startDate_txt.Location = new System.Drawing.Point(6, 195);
+			this.startDate_txt.Name = "startDate_txt";
+			this.startDate_txt.Size = new System.Drawing.Size(200, 23);
+			this.startDate_txt.TabIndex = 12;
 			// 
 			// cancel_button
 			// 
@@ -290,20 +304,6 @@
 			this.message_label.Size = new System.Drawing.Size(0, 15);
 			this.message_label.TabIndex = 24;
 			// 
-			// startDate_txt
-			// 
-			this.startDate_txt.Location = new System.Drawing.Point(6, 195);
-			this.startDate_txt.Name = "startDate_txt";
-			this.startDate_txt.Size = new System.Drawing.Size(200, 23);
-			this.startDate_txt.TabIndex = 12;
-			// 
-			// endDate_txt
-			// 
-			this.endDate_txt.Location = new System.Drawing.Point(6, 239);
-			this.endDate_txt.Name = "endDate_txt";
-			this.endDate_txt.Size = new System.Drawing.Size(200, 23);
-			this.endDate_txt.TabIndex = 13;
-			// 
 			// frmAddEdit
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -316,12 +316,11 @@
 			this.Controls.Add(this.groupBox1);
 			this.Name = "frmAddEdit";
 			this.Text = "frmAddEdit";
-			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAddEdit_FormClosed);
 			this.Load += new System.EventHandler(this.frmAddEdit_Load);
 			this.groupBox1.ResumeLayout(false);
+			this.groupBox3.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox2.PerformLayout();
-			this.groupBox3.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			this.ResumeLayout(false);
