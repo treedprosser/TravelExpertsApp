@@ -9,7 +9,8 @@ namespace TravelExpertsApp
 {
 	public static class TravelPackageManager
 	{
-		public static List<ProductsSupplier>? GetProductsSuppliers(Package pkg, List<string> productList)
+		//returns a ProductsSupplier list based on the form list
+		public static List<ProductsSupplier>? GetProductsSuppliers(List<string> productList)
 		{
 			List<ProductsSupplier> prodSup = new List<ProductsSupplier>();
 			try
@@ -18,16 +19,21 @@ namespace TravelExpertsApp
 				{
 					foreach (string p in productList)
 					{
+						//get product and supplier ids from the list
 						int prodID = int.Parse(p.Split(" - ")[0].Split(":")[0]);
 						int supID = int.Parse(p.Split(" - ")[1].Split(":")[0]);
+						//get product and supplier from the database
 						Product? prod = db.Products.Find(prodID);
 						Supplier? sup = db.Suppliers.Find(supID);
 
+						//if they are null, something is wrong
+						//continue only if both exist
 						if (prod != null &&	sup != null)
 						{
+							//gets the ProductsSupplier from the database
 							ProductsSupplier ps = db.ProductsSuppliers
 								.Where(p => p.ProductId == prod.ProductId && p.SupplierId == sup.SupplierId).First();
-							if (ps == null)
+							if (ps == null)//if it doesnt exist, create one
 							{
 								ps = new ProductsSupplier()
 								{
@@ -37,35 +43,38 @@ namespace TravelExpertsApp
 								db.ProductsSuppliers.Add(ps);
 								db.SaveChanges();
 							}
-								
+								//add to the ProductsSupplier list
 							prodSup.Add(ps);
 						}
 						else
-							return null;
+							return null; //return null if something went wrong
 					}
 				}
 			}
 			catch
 			{
-				return null;
+				return null; //if an error occured, return null
 			}
 
-			return prodSup;
+			return prodSup; //return the ProductsSupplier list if everything is fine
 		}
 
+		//saves the package in the database
 		public static bool SavePackage(bool isAdd, Package package, List<string> productList)
 		{
-			List<ProductsSupplier>? productsSuppliers = GetProductsSuppliers(package, productList);
+			//gets the productsSuppliers list
+			List<ProductsSupplier>? productsSuppliers = GetProductsSuppliers(productList);
 
+			//if it is null, something is wrong
 			if (productsSuppliers != null)
 			{
 				try
 				{
-					if (isAdd)
+					if (isAdd) //adds the package
 						AddPackage(package, productsSuppliers);
-					else
+					else //modifies the package
 						ModifyPackage(package, productsSuppliers);
-					return true;
+					return true; //returns true if it went alright
 				}
 				catch
 				{
@@ -76,6 +85,7 @@ namespace TravelExpertsApp
 				return false;
 		}
 
+		//modifies the package
 		private static void ModifyPackage(Package package, List<ProductsSupplier> productsSuppliers)
 		{
 			using(TravelExpertsContext db = new TravelExpertsContext())
@@ -87,6 +97,7 @@ namespace TravelExpertsApp
 					modPackage.ProductSuppliers
 						.Add(db.ProductsSuppliers.Find(ps.ProductSupplierId));
 				}
+
 				modPackage.PkgName = package.PkgName;
 				modPackage.PkgDesc = package.PkgDesc;
 				modPackage.PkgBasePrice = package.PkgBasePrice;
@@ -98,6 +109,7 @@ namespace TravelExpertsApp
 			}
 		}
 
+		//adds the package
 		private static void AddPackage(Package package, List<ProductsSupplier> productsSuppliers)
 		{
 			using (TravelExpertsContext db = new TravelExpertsContext())
@@ -108,6 +120,7 @@ namespace TravelExpertsApp
 					package.ProductSuppliers
 						.Add(db.ProductsSuppliers.Find(ps.ProductSupplierId));
 				}
+
 				db.Add(package);
 				db.SaveChanges();
 			}
