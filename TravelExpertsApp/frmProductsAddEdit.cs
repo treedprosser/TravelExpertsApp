@@ -58,8 +58,8 @@ namespace TravelExpertsApp
         {
             if (currentProduct != null)
             {
-                txtProductID = currentProduct.ProductId;
-                txtProductName = currentProduct.ProdName;
+                txtProductID.Text = currentProduct.ProductId.ToString();
+                txtProductName.Text = currentProduct.ProdName;
                 // Add dropdown list for suppliers?
             }
             else
@@ -82,7 +82,7 @@ namespace TravelExpertsApp
         // Load current product with data on the form
         private void LoadProduct()
         {
-            currentProduct.ProductId = txtProductID.Text;
+            currentProduct.ProductId = int.Parse(txtProductID.Text);
             currentProduct.ProdName = txtProductName.Text;
             // Add supplier list?
         }
