@@ -20,7 +20,7 @@ namespace TravelExpertsApp
 		public Package? package;
 		//do not try to set isAdd
 		//it is assigned and used later in the code
-		private bool isAdd;
+		public bool isAdd;
 
         public frmAddEdit()
         {

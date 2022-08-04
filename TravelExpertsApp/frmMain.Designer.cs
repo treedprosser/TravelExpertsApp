@@ -49,6 +49,7 @@
             this.lstPackages.Name = "lstPackages";
             this.lstPackages.Size = new System.Drawing.Size(371, 235);
             this.lstPackages.TabIndex = 0;
+            this.lstPackages.SelectedIndexChanged += new System.EventHandler(this.lstPackages_SelectedIndexChanged);
             // 
             // btnAddPackage
             // 
@@ -68,6 +69,7 @@
             this.btnEditPackage.TabIndex = 2;
             this.btnEditPackage.Text = "&Edit Package";
             this.btnEditPackage.UseVisualStyleBackColor = true;
+            this.btnEditPackage.Click += new System.EventHandler(this.btnEditPackage_Click);
             // 
             // cbo_products
             // 
@@ -111,6 +113,7 @@
             this.btnAddProd.TabIndex = 7;
             this.btnAddProd.Text = "&Add Product";
             this.btnAddProd.UseVisualStyleBackColor = true;
+            this.btnAddProd.Click += new System.EventHandler(this.btnAddProd_Click);
             // 
             // btn_EditProd
             // 
@@ -120,6 +123,7 @@
             this.btn_EditProd.TabIndex = 8;
             this.btn_EditProd.Text = "&Edit Product";
             this.btn_EditProd.UseVisualStyleBackColor = true;
+            this.btn_EditProd.Click += new System.EventHandler(this.btn_EditProd_Click);
             // 
             // btn_AddSupplier
             // 
@@ -129,6 +133,7 @@
             this.btn_AddSupplier.TabIndex = 9;
             this.btn_AddSupplier.Text = "&Add Supplier";
             this.btn_AddSupplier.UseVisualStyleBackColor = true;
+            this.btn_AddSupplier.Click += new System.EventHandler(this.btn_AddSupplier_Click);
             // 
             // btn_EditSupplier
             // 
@@ -138,6 +143,7 @@
             this.btn_EditSupplier.TabIndex = 10;
             this.btn_EditSupplier.Text = "&Edit Supplier";
             this.btn_EditSupplier.UseVisualStyleBackColor = true;
+            this.btn_EditSupplier.Click += new System.EventHandler(this.btn_EditSupplier_Click);
             // 
             // frmMain
             // 
@@ -158,7 +164,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
-            this.Text = "Form1";
+            this.Text = "Travel Experts ";
             this.Load += new System.EventHandler(this.frmMain_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();
