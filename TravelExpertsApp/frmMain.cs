@@ -35,6 +35,8 @@ namespace TravelExpertsApp
             }
 
             btnEditPackage.Enabled = false;
+            btn_EditProd.Enabled = false;
+            btn_EditSupplier.Enabled = false;
         }
 
         // adds a new package 
