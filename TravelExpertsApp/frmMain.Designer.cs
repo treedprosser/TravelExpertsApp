@@ -159,6 +159,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.frmMain_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 

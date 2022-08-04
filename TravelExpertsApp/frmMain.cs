@@ -17,26 +17,28 @@ namespace TravelExpertsApp
         // as application starts 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            try
-            {
-                //fills the Package list and fills the product and supplier combo boxes
-                using (TravelExpertsContext db = new TravelExpertsContext())
-                {
-                    lstPackages.DataSource = db.Packages.Select(p => p.PackageId + ":" + p.PkgName).ToList();
-                    cbo_products.DataSource = db.Products.Select(p => p.ProductId + ":" + p.ProdName).ToList();
-                    cbo_Suppliers.DataSource = db.Suppliers.Select(s => s.SupplierId + ":" + s.SupName).ToList();
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Error connecting to the database", "Error");
-                this.Close();
-                return;
-            }
 
-            btnEditPackage.Enabled = false;
-            btn_EditProd.Enabled = false;
-            btn_EditSupplier.Enabled = false;
+        //        //fills the Package list and fills the product and supplier combo boxes
+        //        using (TravelExpertsContext db = new TravelExpertsContext())
+        //        {
+        //            var packages = (from package in db.Packages
+        //                            select new
+        //                            {
+        //                                package.PackageId,
+        //                                package.PkgName,
+        //                                package.PkgBasePrice
+        //                            }).ToList();
+        //            lstPackages.DataSource = packages;
+
+        //            //lstPackages.DataSource = db.Packages.ToList();
+        //            cbo_products.DataSource = db.Products.Select(p => p.ProductId + ":" + p.ProdName).ToList();
+        //            cbo_Suppliers.DataSource = db.Suppliers.Select(s => s.SupplierId + ":" + s.SupName).ToList();
+        //        }
+
+
+        //    btnEditPackage.Enabled = false;
+        //    btn_EditProd.Enabled = false;
+        //    btn_EditSupplier.Enabled = false;
         }
 
         // adds a new package 
@@ -44,6 +46,25 @@ namespace TravelExpertsApp
         {
             frmAddEdit secondForm = new frmAddEdit();
 
+        }
+
+        private void frmMain_Load_1(object sender, EventArgs e)
+        {
+            btnEditPackage.Enabled = false;
+            btn_EditProd.Enabled = false;
+            btn_EditSupplier.Enabled = false;
+
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                var packages = (from package in db.Packages
+                                select new
+                                {
+                                    package.PackageId,
+                                    package.PkgName,
+                                    package.PkgBasePrice
+                                }).ToList();
+                lstPackages.DataSource = packages;
+            }
         }
     }
 }
