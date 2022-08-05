@@ -77,6 +77,7 @@ namespace TravelExpertsApp
                 currentProduct = new Product();
             }
             LoadProduct(); // Load new product if add or modify
+            this.DialogResult = DialogResult.OK; // Closes the form
         }
 
         // Load current product with data on the form
