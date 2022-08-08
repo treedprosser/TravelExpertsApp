@@ -35,7 +35,7 @@ namespace TravelExpertsApp
         {
             btnEditPackage.Enabled = false;
             btn_EditProd.Enabled = false;
-            btn_EditSupplier.Enabled = false;
+            //btn_EditSupplier.Enabled = false;
 
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
@@ -107,19 +107,16 @@ namespace TravelExpertsApp
         // adds supplier 
         private void btn_AddSupplier_Click(object sender, EventArgs e)
         {
-            frmSuppliersAddEdit secondForm = new frmSuppliersAddEdit();
-            //secondForm.isAdd = true;
+           ShowDialog();
 
-            DialogResult result = secondForm.ShowDialog(); 
+             
         }
 
         // edits supplier that was selected
         private void btn_EditSupplier_Click(object sender, EventArgs e)
         {
-            frmSuppliersAddEdit secondForm = new frmSuppliersAddEdit();
-            //secondForm.isAdd = false;
+            ShowDialog("edit");
 
-            DialogResult result = secondForm.ShowDialog();
         }
 
         private void lstPackages_SelectedIndexChanged(object sender, EventArgs e)
@@ -137,6 +134,44 @@ namespace TravelExpertsApp
                 message += $"Error {err.Number}: {err.Message}\n";
             }
             MessageBox.Show(message, "Database Update Error(s)");
+        }
+        private void ShowDialog(
+            string formAction = "add",
+            int supplierID = 0,
+            string supplierName = ""
+
+        )
+        {
+
+            // Create a new  form object with values passed in to populate the text boxes
+            frmSuppliersAddEdit addSupplierForm = new(
+                formAction,
+                supplierID,
+                supplierName
+            );
+
+            // Hide the main ProductMaintenance form
+            this.Hide();
+
+            // Open a ProductMaintenanceEdit form as a dialog
+            addSupplierForm.ShowDialog();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            int ID = 0;
+
+            string Name = "";
+
+            string[] Option = cbo_Suppliers.Text.Split(":");
+
+            ID = Convert.ToInt32(Option[0]);
+
+            Name = Option[1];
+
+            ShowDialog("edit", ID, Name );
+
+
         }
     }
 }

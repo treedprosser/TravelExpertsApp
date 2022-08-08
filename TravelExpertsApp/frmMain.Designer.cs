@@ -38,7 +38,7 @@
             this.btnAddProd = new System.Windows.Forms.Button();
             this.btn_EditProd = new System.Windows.Forms.Button();
             this.btn_AddSupplier = new System.Windows.Forms.Button();
-            this.btn_EditSupplier = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstPackages
@@ -135,22 +135,22 @@
             this.btn_AddSupplier.UseVisualStyleBackColor = true;
             this.btn_AddSupplier.Click += new System.EventHandler(this.btn_AddSupplier_Click);
             // 
-            // btn_EditSupplier
+            // btnEdit
             // 
-            this.btn_EditSupplier.Location = new System.Drawing.Point(601, 333);
-            this.btn_EditSupplier.Name = "btn_EditSupplier";
-            this.btn_EditSupplier.Size = new System.Drawing.Size(128, 33);
-            this.btn_EditSupplier.TabIndex = 10;
-            this.btn_EditSupplier.Text = "&Edit Supplier";
-            this.btn_EditSupplier.UseVisualStyleBackColor = true;
-            this.btn_EditSupplier.Click += new System.EventHandler(this.btn_EditSupplier_Click);
+            this.btnEdit.Location = new System.Drawing.Point(599, 333);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(128, 33);
+            this.btnEdit.TabIndex = 10;
+            this.btnEdit.Text = "&Edit Supplier";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(843, 478);
-            this.Controls.Add(this.btn_EditSupplier);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btn_AddSupplier);
             this.Controls.Add(this.btn_EditProd);
             this.Controls.Add(this.btnAddProd);
@@ -183,6 +183,6 @@
         private Button btnAddProd;
         private Button btn_EditProd;
         private Button btn_AddSupplier;
-        private Button btn_EditSupplier;
+        private Button btnEdit;
     }
 }
