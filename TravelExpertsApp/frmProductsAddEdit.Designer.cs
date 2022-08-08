@@ -71,6 +71,7 @@
             // 
             this.txtProductID.Location = new System.Drawing.Point(134, 39);
             this.txtProductID.Name = "txtProductID";
+            this.txtProductID.ReadOnly = true;
             this.txtProductID.Size = new System.Drawing.Size(236, 29);
             this.txtProductID.TabIndex = 1;
             // 

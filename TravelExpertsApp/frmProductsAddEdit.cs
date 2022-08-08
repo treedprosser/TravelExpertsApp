@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -72,11 +73,15 @@ namespace TravelExpertsApp
         private void btn_OK_Click(object sender, EventArgs e)
         {
             // add if statement for validator
-            if (isAdd)
+            if (Validator.IsPresent(txtProductID) && Validator.IsPresent(txtProductName))
             {
-                currentProduct = new Product();
+                if (isAdd)
+                {
+                    currentProduct = new Product();
+                }
+                LoadProduct(); // Load new product if add or modify
+                this.DialogResult = DialogResult.OK; // Closes the form 
             }
-            LoadProduct(); // Load new product if add or modify
         }
 
         // Load current product with data on the form
