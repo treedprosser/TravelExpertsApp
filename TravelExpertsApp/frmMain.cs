@@ -199,14 +199,14 @@ namespace TravelExpertsApp
                     try
                     {
                         int supID = secondForm.currentSupplier.SupplierID;
-                        selectedProduct = db.Suppliers.Find(supID);
-                        if (selectedProduct == null)
+                        selectedSupplier = db.Suppliers.Find(supID);
+                        if (selectedSupplier == null)
                         {
                             MessageBox.Show("Current supplier does not exit", "Modify error");
                             return;
                         }
-                        selectedProduct.SupplierID = secondForm.currentSupplier.SupplierID;
-                        selectedProduct.SupplierName = secondForm.currentSupplier.SupplierName;
+                        selectedSupplier.SupplierID = secondForm.currentSupplier.SupplierID;
+                        selectedSupplier.SupplierName = secondForm.currentSupplier.SupplierName;
                         db.SaveChanges();
                     }
                     catch (DbUpdateException ex)
