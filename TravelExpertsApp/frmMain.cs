@@ -11,8 +11,10 @@ namespace TravelExpertsApp
     /// </summary>
     public partial class frmMain : Form
     {
+        // private properties
         private Package selectedPackage;
         private Product selectedProduct;
+        private Supplier selectedSupplier;  
 
         public frmMain()
         {
@@ -27,7 +29,25 @@ namespace TravelExpertsApp
             secondForm.isAdd = true;
 
             DialogResult result = secondForm.ShowDialog();
-
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+                    using (TravelExpertsContext db = new TravelExpertsContext())
+                    {
+                        db.Packages.Add(selectedPackage);
+                        db.SaveChanges();
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    HandleDbUpdateException(ex);
+                }
+                catch
+                {
+                    MessageBox.Show("Error when adding Package");
+                }
+            }
         }
 
         // loads on application
@@ -140,7 +160,26 @@ namespace TravelExpertsApp
             frmSuppliersAddEdit secondForm = new frmSuppliersAddEdit();
             //secondForm.isAdd = true;
 
-            DialogResult result = secondForm.ShowDialog(); 
+            DialogResult result = secondForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+                    using (TravelExpertsContext db = new TravelExpertsContext())
+                    {
+                        db.Suppliers.Add(selectedSupplier);
+                        db.SaveChanges();
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    HandleDbUpdateException(ex);
+                }
+                catch
+                {
+                    MessageBox.Show("Error when adding Supplier");
+                }
+            }
         }
 
         // edits supplier that was selected
@@ -149,7 +188,37 @@ namespace TravelExpertsApp
             frmSuppliersAddEdit secondForm = new frmSuppliersAddEdit();
             //secondForm.isAdd = false;
 
+            // Get selected product from drop down list
+            secondForm.currentSupplier = selectedSupplier;
+
             DialogResult result = secondForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    try
+                    {
+                        int supID = secondForm.currentSupplier.SupplierID;
+                        selectedProduct = db.Suppliers.Find(supID);
+                        if (selectedProduct == null)
+                        {
+                            MessageBox.Show("Current supplier does not exit", "Modify error");
+                            return;
+                        }
+                        selectedProduct.SupplierID = secondForm.currentSupplier.SupplierID;
+                        selectedProduct.SupplierName = secondForm.currentSupplier.SupplierName;
+                        db.SaveChanges();
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        HandleDbUpdateException(ex);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error when updating Product");
+                    }
+                }
+            }
         }
 
         private void lstPackages_SelectedIndexChanged(object sender, EventArgs e)
@@ -157,6 +226,7 @@ namespace TravelExpertsApp
             btnEditPackage.Enabled = true;
         }
 
+        // database error handling 
         private void HandleDbUpdateException(DbUpdateException ex)
         {
             // get the inner exception with potentially multiple errors 
