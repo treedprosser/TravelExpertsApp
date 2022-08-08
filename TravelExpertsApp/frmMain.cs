@@ -70,6 +70,7 @@ namespace TravelExpertsApp
             // Calls the frmProductsAddEdit
             frmProductsAddEdit secondForm = new frmProductsAddEdit();
             secondForm.isAdd = true;
+            secondForm.currentProduct = null;
 
             DialogResult result = secondForm.ShowDialog();
             if (result == DialogResult.OK)
@@ -100,8 +101,37 @@ namespace TravelExpertsApp
         {
             frmProductsAddEdit secondForm = new frmProductsAddEdit();
             secondForm.isAdd = false;
+            // Get selected product from drop down list
+            secondForm.currentProduct = selectedProduct;
 
             DialogResult result = secondForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    try
+                    {
+                        int prodID = secondForm.currentProduct.ProductId;
+                        selectedProduct = db.Products.Find(prodID);
+                        if (selectedProduct == null)
+                        {
+                            MessageBox.Show("Current product does not exit", "Modify error");
+                            return;
+                        }
+                        selectedProduct.ProductId = secondForm.currentProduct.ProductId;
+                        selectedProduct.ProdName = secondForm.currentProduct.ProdName;
+                        db.SaveChanges();
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        HandleDbUpdateException(ex);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error when updating Product");
+                    }
+                }
+            }
         }
 
         // adds supplier 
