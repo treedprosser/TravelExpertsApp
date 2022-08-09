@@ -48,8 +48,8 @@ namespace TravelExpertsApp
         private void PopulateLists()
         {
             TravelExpertsContext db = new TravelExpertsContext();
-            cbo_Products.DataSource = db.Products.ToList();
-            cbo_Suppliers.DataSource = db.Suppliers.ToList();
+            cbo_Products.DataSource = db.Products.Select(p => p.ProductId + " : " + p.ProdName).ToList();
+            cbo_Suppliers.DataSource = db.Suppliers.Select(s => s.SupplierId + " : " + s.SupName).ToList();
         }
 
         private void LoadProdSup()
