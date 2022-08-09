@@ -70,11 +70,14 @@ namespace TravelExpertsApp
 					endDate_txt.Text = package.PkgEndDate.HasValue ?
 						package.PkgEndDate.Value.ToString("MM/dd/yyy") : "";
 
-					foreach ( string product in package.ProductSuppliers
-						.Select(
-						p => p.Product.ProductId +":"+ p.Product.ProdName + " - " + p.Supplier.SupplierId + ":" + p.Supplier.SupName)
-						.ToList())
-						products_list.Items.Add(product);
+					foreach ( ProductsSupplier ps in 
+						db.ProductsSuppliers
+						.Where(ps => ps.Packages.Select(p => p.PackageId).Contains(package.PackageId)).ToList())
+					{
+						string productString =
+							ps.ProductId + ":" + db.Products.Find(ps.ProductId).ProdName + " - " + ps.SupplierId + ":" + db.Suppliers.Find(ps.SupplierId).SupName;
+						products_list.Items.Add(productString);
+					}
 				}
 			}
 		}
@@ -211,7 +214,8 @@ namespace TravelExpertsApp
 		//removes the selected productsSupplier from the list
 		private void remove_button_Click(object sender, EventArgs e)
 		{
-			products_list.Items.RemoveAt(products_list.SelectedIndex);
+			if(products_list.SelectedIndex != -1)
+				products_list.Items.RemoveAt(products_list.SelectedIndex);
 		}
 	}
 }

@@ -31,8 +31,9 @@ namespace TravelExpertsApp
 						if (prod != null &&	sup != null)
 						{
 							//gets the ProductsSupplier from the database
-							ProductsSupplier ps = db.ProductsSuppliers
-								.Where(p => p.ProductId == prod.ProductId && p.SupplierId == sup.SupplierId).First();
+							var psquery = db.ProductsSuppliers
+								.Where(p => p.ProductId == prod.ProductId && p.SupplierId == sup.SupplierId);
+							ProductsSupplier? ps = psquery.Count() != 0 ? psquery.First() : null;
 							if (ps == null)//if it doesnt exist, create one
 							{
 								ps = new ProductsSupplier()
@@ -91,8 +92,8 @@ namespace TravelExpertsApp
 			using(TravelExpertsContext db = new TravelExpertsContext())
 			{
 				Package modPackage = db.Packages.Find(package.PackageId);
-				modPackage.ProductSuppliers.Clear();
-				foreach(ProductsSupplier ps in productsSuppliers)
+				//modPackage.ProductSuppliers.Clear(); this doesnt work
+				foreach (ProductsSupplier ps in productsSuppliers)
 				{
 					modPackage.ProductSuppliers
 						.Add(db.ProductsSuppliers.Find(ps.ProductSupplierId));
