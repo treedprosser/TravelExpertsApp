@@ -131,9 +131,7 @@ namespace TravelExpertsApp
         // adds supplier 
         private void btn_AddSupplier_Click(object sender, EventArgs e)
         {
-           ShowDialog();
-
-             
+           ShowDialog();  
         }
 
         // edits supplier that was selected

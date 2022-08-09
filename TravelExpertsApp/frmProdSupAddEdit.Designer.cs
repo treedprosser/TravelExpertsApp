@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbo_Suppliers = new System.Windows.Forms.ComboBox();
+            this.cbo_Products = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbo_Products = new System.Windows.Forms.ComboBox();
-            this.cbo_Suppliers = new System.Windows.Forms.ComboBox();
             this.btnAccept = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -52,6 +52,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Product/Supplier Information";
             // 
+            // cbo_Suppliers
+            // 
+            this.cbo_Suppliers.FormattingEnabled = true;
+            this.cbo_Suppliers.Location = new System.Drawing.Point(17, 169);
+            this.cbo_Suppliers.Name = "cbo_Suppliers";
+            this.cbo_Suppliers.Size = new System.Drawing.Size(305, 29);
+            this.cbo_Suppliers.TabIndex = 3;
+            // 
+            // cbo_Products
+            // 
+            this.cbo_Products.FormattingEnabled = true;
+            this.cbo_Products.Location = new System.Drawing.Point(21, 84);
+            this.cbo_Products.Name = "cbo_Products";
+            this.cbo_Products.Size = new System.Drawing.Size(305, 29);
+            this.cbo_Products.TabIndex = 2;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -69,22 +85,6 @@
             this.label1.Size = new System.Drawing.Size(112, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select Product:";
-            // 
-            // cbo_Products
-            // 
-            this.cbo_Products.FormattingEnabled = true;
-            this.cbo_Products.Location = new System.Drawing.Point(21, 84);
-            this.cbo_Products.Name = "cbo_Products";
-            this.cbo_Products.Size = new System.Drawing.Size(305, 29);
-            this.cbo_Products.TabIndex = 2;
-            // 
-            // cbo_Suppliers
-            // 
-            this.cbo_Suppliers.FormattingEnabled = true;
-            this.cbo_Suppliers.Location = new System.Drawing.Point(17, 169);
-            this.cbo_Suppliers.Name = "cbo_Suppliers";
-            this.cbo_Suppliers.Size = new System.Drawing.Size(305, 29);
-            this.cbo_Suppliers.TabIndex = 3;
             // 
             // btnAccept
             // 
@@ -106,6 +106,7 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // frmProdSupAddEdit
             // 

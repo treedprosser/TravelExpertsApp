@@ -57,5 +57,10 @@ namespace TravelExpertsApp
             currentProdSup.ProductId = (int?)cbo_Products.SelectedValue;
             currentProdSup.SupplierId = (int?)cbo_Suppliers.SelectedValue;
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
