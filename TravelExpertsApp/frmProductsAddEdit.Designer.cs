@@ -31,8 +31,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.lblProductName = new System.Windows.Forms.Label();
-            this.txtProductID = new System.Windows.Forms.TextBox();
-            this.lblProductID = new System.Windows.Forms.Label();
             this.btn_OK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -42,8 +40,6 @@
             // 
             this.groupBox1.Controls.Add(this.txtProductName);
             this.groupBox1.Controls.Add(this.lblProductName);
-            this.groupBox1.Controls.Add(this.txtProductID);
-            this.groupBox1.Controls.Add(this.lblProductID);
             this.groupBox1.Location = new System.Drawing.Point(32, 29);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(376, 207);
@@ -53,7 +49,7 @@
             // 
             // txtProductName
             // 
-            this.txtProductName.Location = new System.Drawing.Point(134, 112);
+            this.txtProductName.Location = new System.Drawing.Point(134, 83);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(236, 29);
             this.txtProductName.TabIndex = 3;
@@ -61,32 +57,15 @@
             // lblProductName
             // 
             this.lblProductName.AutoSize = true;
-            this.lblProductName.Location = new System.Drawing.Point(6, 115);
+            this.lblProductName.Location = new System.Drawing.Point(6, 86);
             this.lblProductName.Name = "lblProductName";
             this.lblProductName.Size = new System.Drawing.Size(113, 21);
             this.lblProductName.TabIndex = 2;
             this.lblProductName.Text = "Product Name:";
             // 
-            // txtProductID
-            // 
-            this.txtProductID.Location = new System.Drawing.Point(134, 39);
-            this.txtProductID.Name = "txtProductID";
-            this.txtProductID.ReadOnly = true;
-            this.txtProductID.Size = new System.Drawing.Size(236, 29);
-            this.txtProductID.TabIndex = 1;
-            // 
-            // lblProductID
-            // 
-            this.lblProductID.AutoSize = true;
-            this.lblProductID.Location = new System.Drawing.Point(6, 42);
-            this.lblProductID.Name = "lblProductID";
-            this.lblProductID.Size = new System.Drawing.Size(90, 21);
-            this.lblProductID.TabIndex = 0;
-            this.lblProductID.Text = "Product ID: ";
-            // 
             // btn_OK
             // 
-            this.btn_OK.Location = new System.Drawing.Point(32, 258);
+            this.btn_OK.Location = new System.Drawing.Point(84, 242);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(92, 43);
             this.btn_OK.TabIndex = 1;
@@ -96,7 +75,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(157, 258);
+            this.btnCancel.Location = new System.Drawing.Point(264, 242);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(92, 43);
             this.btnCancel.TabIndex = 2;
@@ -129,8 +108,6 @@
         private GroupBox groupBox1;
         private TextBox txtProductName;
         private Label lblProductName;
-        private TextBox txtProductID;
-        private Label lblProductID;
         private Button btn_OK;
         private Button btnCancel;
     }

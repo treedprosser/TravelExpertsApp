@@ -33,22 +33,14 @@ namespace TravelExpertsApp
         // loads on application
         private void frmMain_Load_1(object sender, EventArgs e)
         {
-            btnEditPackage.Enabled = false;
-            btn_EditProd.Enabled = false;
+            //btnEditPackage.Enabled = false;
+            //btn_EditProd.Enabled = false;
             //btn_EditSupplier.Enabled = false;
 
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                var packages = (from package in db.Packages
-                                select new
-                                {
-                                    package.PackageId,
-                                    package.PkgName,
-                                    package.PkgBasePrice
-                                }).ToList();
-                lstPackages.DataSource = packages;
-
-                cbo_products.DataSource = db.Products.Select(p => p.ProductId + " : " + p.ProdName).ToList();
+                UpdatePackages();
+                UpdateProducts();
                 cbo_Suppliers.DataSource = db.Suppliers.Select(s => s.SupplierId + " : " + s.SupName).ToList();
             }
         }
@@ -93,6 +85,7 @@ namespace TravelExpertsApp
                     MessageBox.Show("Error when adding Product");
                 }
             }
+            UpdateProducts();
         }
 
         // edits the product that has been selected
@@ -100,8 +93,37 @@ namespace TravelExpertsApp
         {
             frmProductsAddEdit secondForm = new frmProductsAddEdit();
             secondForm.isAdd = false;
+            TravelExpertsContext db = new TravelExpertsContext();
+            selectedProduct = db.Products.Find(cbo_products.SelectedIndex + 1);
+            secondForm.currentProduct = selectedProduct;
 
             DialogResult result = secondForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+                    int productID = secondForm.currentProduct.ProductId;
+                    selectedProduct = db.Products.Find(productID);
+                    if (selectedProduct == null)
+                    {
+                        MessageBox.Show("Current product does not exist", "Modify error");
+                        return;
+                    }
+                    selectedProduct.ProductId = secondForm.currentProduct.ProductId;
+                    selectedProduct.ProdName = secondForm.currentProduct.ProdName;
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    HandleDbUpdateException(ex);
+                }
+                catch
+                {
+                    MessageBox.Show("Error when Modifying Product");
+                }
+            }
+            UpdateProducts();
         }
 
         // adds supplier 
@@ -172,6 +194,37 @@ namespace TravelExpertsApp
             ShowDialog("edit", ID, Name );
 
 
+        }
+
+        private void UpdateProducts()
+        {
+            TravelExpertsContext db = new TravelExpertsContext();
+            cbo_products.DataSource = db.Products.Select(p => p.ProductId + " : " + p.ProdName).ToList();
+        }
+
+        private void UpdatePackages()
+        {
+            dgvPackages.Columns.Clear();
+            TravelExpertsContext db = new TravelExpertsContext();
+            var packages = (from package in db.Packages
+                            select new
+                            {
+                                package.PackageId,
+                                package.PkgName,
+                                package.PkgBasePrice
+                            }).ToList();
+
+            dgvPackages.DataSource = packages;
+
+            dgvPackages.Columns[0].HeaderText = "Package ID";
+            dgvPackages.Columns[0].Width = 75;
+
+            dgvPackages.Columns[1].HeaderText = "Package Name";
+            dgvPackages.Columns[1].Width = 200;
+
+            dgvPackages.Columns[2].HeaderText = "Package Base Price";
+            dgvPackages.Columns[2].Width = 100;
+            dgvPackages.Columns[2].DefaultCellStyle.Format = "c";
         }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstPackages = new System.Windows.Forms.ListBox();
             this.btnAddPackage = new System.Windows.Forms.Button();
             this.btnEditPackage = new System.Windows.Forms.Button();
             this.cbo_products = new System.Windows.Forms.ComboBox();
@@ -39,17 +38,9 @@
             this.btn_EditProd = new System.Windows.Forms.Button();
             this.btn_AddSupplier = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.dgvPackages = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPackages)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lstPackages
-            // 
-            this.lstPackages.FormattingEnabled = true;
-            this.lstPackages.ItemHeight = 21;
-            this.lstPackages.Location = new System.Drawing.Point(24, 25);
-            this.lstPackages.Name = "lstPackages";
-            this.lstPackages.Size = new System.Drawing.Size(371, 235);
-            this.lstPackages.TabIndex = 0;
-            this.lstPackages.SelectedIndexChanged += new System.EventHandler(this.lstPackages_SelectedIndexChanged);
             // 
             // btnAddPackage
             // 
@@ -145,11 +136,21 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
+            // dgvPackages
+            // 
+            this.dgvPackages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPackages.Location = new System.Drawing.Point(33, 47);
+            this.dgvPackages.Name = "dgvPackages";
+            this.dgvPackages.RowTemplate.Height = 25;
+            this.dgvPackages.Size = new System.Drawing.Size(405, 229);
+            this.dgvPackages.TabIndex = 11;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(843, 478);
+            this.Controls.Add(this.dgvPackages);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btn_AddSupplier);
             this.Controls.Add(this.btn_EditProd);
@@ -160,20 +161,18 @@
             this.Controls.Add(this.cbo_products);
             this.Controls.Add(this.btnEditPackage);
             this.Controls.Add(this.btnAddPackage);
-            this.Controls.Add(this.lstPackages);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.Text = "Travel Experts ";
             this.Load += new System.EventHandler(this.frmMain_Load_1);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPackages)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private ListBox lstPackages;
         private Button btnAddPackage;
         private Button btnEditPackage;
         private ComboBox cbo_products;
@@ -184,5 +183,6 @@
         private Button btn_EditProd;
         private Button btn_AddSupplier;
         private Button btnEdit;
+        private DataGridView dgvPackages;
     }
 }

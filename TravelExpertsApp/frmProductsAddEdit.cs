@@ -39,29 +39,12 @@ namespace TravelExpertsApp
             }
         }
 
-        // Get suppliers from the database and set as the list
-        //private void LoadSuppliers()
-        //{
-        //    try
-        //    {
-        //        using (TravelExpertsContext db = new TravelExpertsContext())
-        //        {
-        //            var suppliers = (from s in db.Suppliers orderby s.SupName select s).ToList();
-        //            cboSuppliers.DataSource = suppliers;
-        //            cboSuppliers.DisplayMember = "SupName";
-        //            cboSuppliers.ValueMember = "SupplierId";
-        //        }
-        //    }
-        //}
-
         // Displays the current product
         private void DisplayProduct()
         {
             if (currentProduct != null)
             {
-                txtProductID.Text = currentProduct.ProductId.ToString();
                 txtProductName.Text = currentProduct.ProdName;
-                // Add dropdown list for suppliers?
             }
             else
             {
@@ -73,7 +56,7 @@ namespace TravelExpertsApp
         private void btn_OK_Click(object sender, EventArgs e)
         {
             // add if statement for validator
-            if (Validator.IsPresent(txtProductID) && Validator.IsPresent(txtProductName))
+            if (Validator.IsPresent(txtProductName))
             {
                 if (isAdd)
                 {
@@ -87,9 +70,7 @@ namespace TravelExpertsApp
         // Load current product with data on the form
         private void LoadProduct()
         {
-            currentProduct.ProductId = int.Parse(txtProductID.Text);
             currentProduct.ProdName = txtProductName.Text;
-            // Add supplier list?
         }
     }
 }
