@@ -43,7 +43,7 @@ namespace TravelExpertsApp
                 UpdatePackages();
                 UpdateProducts();
                 UpdateProdSup();
-                cbo_Suppliers.DataSource = db.Suppliers.Select(s => s.SupplierId + " : " + s.SupName).ToList();
+                UpdateSuppliers();
             }
         }
 
@@ -131,14 +131,15 @@ namespace TravelExpertsApp
         // adds supplier 
         private void btn_AddSupplier_Click(object sender, EventArgs e)
         {
-           ShowDialog();  
+           ShowDialog();
+            UpdateSuppliers();
         }
 
         // edits supplier that was selected
         private void btn_EditSupplier_Click(object sender, EventArgs e)
         {
             ShowDialog("edit");
-
+            UpdateSuppliers();
         }
 
         private void lstPackages_SelectedIndexChanged(object sender, EventArgs e)
@@ -200,6 +201,12 @@ namespace TravelExpertsApp
         {
             TravelExpertsContext db = new TravelExpertsContext();
             cbo_products.DataSource = db.Products.Select(p => p.ProductId + " : " + p.ProdName).ToList();
+        }
+
+        private void UpdateSuppliers()
+        {
+            TravelExpertsContext db = new TravelExpertsContext();
+            cbo_Suppliers.DataSource = db.Suppliers.Select(s => s.SupplierId + " : " + s.SupName).ToList();
         }
 
         private void UpdateProdSup()
