@@ -25,8 +25,6 @@ namespace TravelExpertsApp
 
         private void frmProductsAddEdit_Load(object sender, EventArgs e)
         {
-            // Populate the list of suppliers (if needed)
-            //LoadSuppliers();
             // Set the title of the form based on the action
             if (isAdd)
             {
@@ -55,7 +53,6 @@ namespace TravelExpertsApp
         // Validate data and set the current product
         private void btn_OK_Click(object sender, EventArgs e)
         {
-            // add if statement for validator
             if (Validator.IsPresent(txtProductName))
             {
                 if (isAdd)

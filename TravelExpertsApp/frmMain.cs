@@ -13,6 +13,7 @@ namespace TravelExpertsApp
     {
         private Package selectedPackage;
         private Product selectedProduct;
+        private ProductsSupplier selectedProdSup;
 
         public frmMain()
         {
@@ -41,6 +42,7 @@ namespace TravelExpertsApp
             {
                 UpdatePackages();
                 UpdateProducts();
+                UpdateProdSup();
                 cbo_Suppliers.DataSource = db.Suppliers.Select(s => s.SupplierId + " : " + s.SupName).ToList();
             }
         }
@@ -202,6 +204,12 @@ namespace TravelExpertsApp
             cbo_products.DataSource = db.Products.Select(p => p.ProductId + " : " + p.ProdName).ToList();
         }
 
+        private void UpdateProdSup()
+        {
+            TravelExpertsContext db = new TravelExpertsContext();
+            cbo_ProductsSuppliers.DataSource = db.ProductsSuppliers.Select(p => p.ProductSupplierId).ToList();
+        }
+
         private void UpdatePackages()
         {
             dgvPackages.Columns.Clear();
@@ -225,6 +233,74 @@ namespace TravelExpertsApp
             dgvPackages.Columns[2].HeaderText = "Package Base Price";
             dgvPackages.Columns[2].Width = 100;
             dgvPackages.Columns[2].DefaultCellStyle.Format = "c";
+        }
+
+        private void btn_AddPS_Click(object sender, EventArgs e)
+        {
+            // Calls the frmProdSupAddEdit
+            frmProdSupAddEdit secondForm = new frmProdSupAddEdit();
+            secondForm.isAdd = true;
+
+            DialogResult result = secondForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                selectedProdSup = secondForm.currentProdSup;
+
+                try
+                {
+                    using (TravelExpertsContext db = new TravelExpertsContext())
+                    {
+                        db.ProductsSuppliers.Add(selectedProdSup);
+                        db.SaveChanges();
+                    }
+                }
+                catch (DbUpdateException ex)
+                {
+                    HandleDbUpdateException(ex);
+                }
+                catch
+                {
+                    MessageBox.Show("Error when adding Product");
+                }
+            }
+            UpdateProdSup();
+        }
+
+        private void btn_EditPS_Click(object sender, EventArgs e)
+        {
+            frmProdSupAddEdit secondForm = new frmProdSupAddEdit();
+            secondForm.isAdd = false;
+            TravelExpertsContext db = new TravelExpertsContext();
+            selectedProdSup = db.ProductsSup.Find(cbo_ProductsSuppliers.SelectedIndex + 1);
+            secondForm.currentProdSup = selectedProdSup;
+
+            DialogResult result = secondForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+                    int prodsupID = secondForm.currentProdSup.ProductSupplierId;
+                    selectedProdSup = db.ProductsSuppliers.Find(prodsupID);
+                    if (selectedProdSup == null)
+                    {
+                        MessageBox.Show("Current Product/Supplier does not exist", "Modify error");
+                        return;
+                    }
+                    selectedProdSup.ProductId = secondForm.currentProdSup.ProductId;
+                    selectedProdSup.SupplierId = secondForm.currentProdSup.SupplierId;
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    HandleDbUpdateException(ex);
+                }
+                catch
+                {
+                    MessageBox.Show("Error when Modifying Product");
+                }
+            }
+            UpdateProdSup();
         }
     }
 }
