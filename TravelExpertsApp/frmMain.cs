@@ -271,7 +271,7 @@ namespace TravelExpertsApp
             frmProdSupAddEdit secondForm = new frmProdSupAddEdit();
             secondForm.isAdd = false;
             TravelExpertsContext db = new TravelExpertsContext();
-            selectedProdSup = db.ProductsSup.Find(cbo_ProductsSuppliers.SelectedIndex + 1);
+            selectedProdSup = db.ProductsSuppliers.Find(cbo_ProductsSuppliers.SelectedIndex + 1);
             secondForm.currentProdSup = selectedProdSup;
 
             DialogResult result = secondForm.ShowDialog();
