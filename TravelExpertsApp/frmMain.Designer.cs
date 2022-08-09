@@ -157,6 +157,7 @@
             this.label3.Size = new System.Drawing.Size(142, 21);
             this.label3.TabIndex = 12;
             this.label3.Text = "Products-Suppliers";
+            this.label3.Visible = false;
             // 
             // cbo_ProductsSuppliers
             // 
@@ -165,6 +166,7 @@
             this.cbo_ProductsSuppliers.Name = "cbo_ProductsSuppliers";
             this.cbo_ProductsSuppliers.Size = new System.Drawing.Size(260, 29);
             this.cbo_ProductsSuppliers.TabIndex = 13;
+            this.cbo_ProductsSuppliers.Visible = false;
             // 
             // btn_AddPS
             // 
@@ -174,6 +176,7 @@
             this.btn_AddPS.TabIndex = 14;
             this.btn_AddPS.Text = "&Add Prod/Sup";
             this.btn_AddPS.UseVisualStyleBackColor = true;
+            this.btn_AddPS.Visible = false;
             this.btn_AddPS.Click += new System.EventHandler(this.btn_AddPS_Click);
             // 
             // btn_EditPS
@@ -184,6 +187,7 @@
             this.btn_EditPS.TabIndex = 15;
             this.btn_EditPS.Text = "&Edit Prod/Sup";
             this.btn_EditPS.UseVisualStyleBackColor = true;
+            this.btn_EditPS.Visible = false;
             this.btn_EditPS.Click += new System.EventHandler(this.btn_EditPS_Click);
             // 
             // frmMain
