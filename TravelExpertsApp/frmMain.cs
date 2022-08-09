@@ -173,10 +173,10 @@ namespace TravelExpertsApp
                 supplierName
             );
 
-            // Hide the main ProductMaintenance form
+            // Hide the main form
             this.Hide();
 
-            // Open a ProductMaintenanceEdit form as a dialog
+            // Open a Supplier form as a dialog
             addSupplierForm.ShowDialog();
         }
 
@@ -197,6 +197,7 @@ namespace TravelExpertsApp
 
         }
 
+        // Methods to update and repopulate data on main form
         private void UpdateProducts()
         {
             TravelExpertsContext db = new TravelExpertsContext();
