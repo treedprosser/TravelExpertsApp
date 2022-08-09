@@ -11,7 +11,7 @@ namespace TravelExpertsApp
     /// </summary>
     public partial class frmMain : Form
     {
-        private Package selectedPackage;
+        private int? selectedPackageId;
         private Product selectedProduct;
         private ProductsSupplier selectedProdSup;
 
@@ -25,10 +25,9 @@ namespace TravelExpertsApp
         {
             // calls the frmPackageAddEdit
             frmAddEdit secondForm = new frmAddEdit();
-            secondForm.isAdd = true;
 
             DialogResult result = secondForm.ShowDialog();
-
+			UpdatePackages();
         }
 
         // loads on application
@@ -52,10 +51,10 @@ namespace TravelExpertsApp
         {
             // calls the frmPackagesAddEdit
             frmAddEdit secondForm = new frmAddEdit();
-            secondForm.isAdd = false;
+			secondForm.packageID = selectedPackageId;
 
             DialogResult result = secondForm.ShowDialog();
-
+			UpdatePackages();
         }
 
         // adds a product
@@ -300,5 +299,14 @@ namespace TravelExpertsApp
             }
             UpdateProdSup();
         }
-    }
+
+		private void dgvPackages_SelectionChanged(object sender, EventArgs e)
+		{
+			DataGridView s = (DataGridView)sender;
+			if(s.SelectedRows.Count > 0 && s.SelectedRows[0].Cells.Count > 0)
+			{
+				selectedPackageId = (int)s.SelectedRows[0].Cells[0].Value;
+			}
+		}
+	}
 }

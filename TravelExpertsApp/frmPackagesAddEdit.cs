@@ -17,7 +17,8 @@ namespace TravelExpertsApp
 		//package that is being modified
 		//set null to add package
 		//or set to existing package to modify
-		public Package? package;
+		public int? packageID;
+		private Package? package;
 		//do not try to set isAdd
 		//it is assigned and used later in the code
 		public bool isAdd;
@@ -47,27 +48,34 @@ namespace TravelExpertsApp
 				return;
 			}
 
-			if (package == null) //add new package
+			if (packageID == null) //add new package
 			{
 				this.Text = "Add package";
 				isAdd = true;
 			}
 			else //modify pakcage
 			{	 //fill the fields with package data
-				isAdd = false;
-				this.Text = "Modify package";
-				name_txt.Text = package.PkgName;
-				description_txt.Text = package.PkgDesc;
-				price_txt.Text = package.PkgBasePrice.ToString();
-				comission_txt.Text = package.PkgAgencyCommission.ToString();
+				using(TravelExpertsContext db = new TravelExpertsContext())
+				{
+					package = db.Packages.Find(packageID);
+					isAdd = false;
+					this.Text = "Modify package";
+					name_txt.Text = package.PkgName;
+					description_txt.Text = package.PkgDesc;
+					price_txt.Text = package.PkgBasePrice.ToString();
+					comission_txt.Text = package.PkgAgencyCommission.ToString();
 
-				startDate_txt.Text = package.PkgStartDate.HasValue ? 
-					package.PkgStartDate.Value.ToString("MM/dd/yyy") : "";
-				endDate_txt.Text = package.PkgEndDate.HasValue ?
-					package.PkgEndDate.Value.ToString("MM/dd/yyy") : "";
+					startDate_txt.Text = package.PkgStartDate.HasValue ? 
+						package.PkgStartDate.Value.ToString("MM/dd/yyy") : "";
+					endDate_txt.Text = package.PkgEndDate.HasValue ?
+						package.PkgEndDate.Value.ToString("MM/dd/yyy") : "";
 
-				products_list.DataSource = package.ProductSuppliers.
-					Select(p => p.Product.ProductId +":"+ p.Product.ProdName + " - " + p.Supplier.SupplierId + ":" + p.Supplier.SupName);
+					foreach ( string product in package.ProductSuppliers
+						.Select(
+						p => p.Product.ProductId +":"+ p.Product.ProdName + " - " + p.Supplier.SupplierId + ":" + p.Supplier.SupName)
+						.ToList())
+						products_list.Items.Add(product);
+				}
 			}
 		}
 
@@ -133,12 +141,18 @@ namespace TravelExpertsApp
 			if(endDate_txt.Text != "")//if end date is not empty
 			{
 				if (!endDateIsValid)//and is not datetime
+				{
+					errors.Add(endDate_txt.Text);
 					errors.Add("End date is invalid. Format: mm/dd/yyyy");
+				}
 				else if (!(endDate > startDate))//and is not later than the start date
 					errors.Add("End date must not be later than start date");
 			}
 			if (startDate_txt.Text != "" && !startDateIsValid) //if start date is not empty and is invalid
+			{
+				errors.Add(startDate_txt.Text);
 				errors.Add("Start date is invalid. Format: mm/dd/yyyy");
+			}
 
 			if(errors.Count > 0) //if there are any errors
 			{
