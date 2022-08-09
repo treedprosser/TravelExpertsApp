@@ -127,10 +127,10 @@ namespace TravelExpertsApp
                 // Form action "add"
                 case "add":
 
-                    // Sets the form text to "add product"
+                    // Sets the form text to "add supplier"
                     this.Text = "Add Supplier";
 
-                    // Set the active control to product name
+                    // Set the active control to supplier name
                     this.ActiveControl = txtBoxSupName;
 
                     txtBoxSupName.Text = "";
