@@ -54,8 +54,8 @@ namespace TravelExpertsApp
 
         private void LoadProdSup()
         {
-            currentProdSup.ProductId = (int?)cbo_Products.SelectedValue;
-            currentProdSup.SupplierId = (int?)cbo_Suppliers.SelectedValue;
+            currentProdSup.ProductId = cbo_Products.SelectedIndex;
+            currentProdSup.SupplierId = cbo_Suppliers.SelectedIndex;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
