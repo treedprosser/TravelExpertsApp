@@ -53,6 +53,7 @@
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(236, 29);
             this.txtProductName.TabIndex = 3;
+            this.txtProductName.Tag = "Product Name";
             // 
             // lblProductName
             // 
