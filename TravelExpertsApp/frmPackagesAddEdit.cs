@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -114,15 +113,15 @@ namespace TravelExpertsApp
 			//parse success checkers
 			bool startDateIsValid = DateTime.TryParseExact(
 				startDate_txt.Text,
-				"MM/dd/yyy",
-				CultureInfo.InvariantCulture,
-				DateTimeStyles.None,
+				"MM/dd/yyyy",
+				System.Globalization.CultureInfo.InvariantCulture,
+				System.Globalization.DateTimeStyles.None,
 				out startDate);
 			bool endDateIsValid = DateTime.TryParseExact(
 				endDate_txt.Text,
-				"MM/dd/yyy",
-				CultureInfo.InvariantCulture,
-				DateTimeStyles.None,
+				"MM/dd/yyyy",
+				System.Globalization.CultureInfo.InvariantCulture,
+				System.Globalization.DateTimeStyles.None,
 				out endDate);
 
 			//list of errors during data validation
@@ -148,8 +147,8 @@ namespace TravelExpertsApp
 					errors.Add(endDate_txt.Text);
 					errors.Add("End date is invalid. Format: mm/dd/yyyy");
 				}
-				else if (!(endDate > startDate))//and is not later than the start date
-					errors.Add("End date must not be later than start date");
+				else if (!(endDate > startDate) || startDate_txt.Text == "")//and is not later than the start date
+					errors.Add("End date must be later than start date");
 			}
 			if (startDate_txt.Text != "" && !startDateIsValid) //if start date is not empty and is invalid
 			{
