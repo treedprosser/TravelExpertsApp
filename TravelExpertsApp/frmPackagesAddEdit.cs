@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TravelData;
+using TravelData2;
 
 namespace TravelExpertsApp
 {
@@ -72,7 +72,7 @@ namespace TravelExpertsApp
 
 					foreach ( ProductsSupplier ps in 
 						db.ProductsSuppliers
-						.Where(ps => ps.Packages.Select(p => p.PackageId).Contains(package.PackageId)).ToList())
+						.Where(ps => ps.PackagesProductsSuppliers.Select(p => p.PackageId).Contains(package.PackageId)).ToList())
 					{
 						string productString =
 							ps.ProductId + ":" + db.Products.Find(ps.ProductId).ProdName + " - " + ps.SupplierId + ":" + db.Suppliers.Find(ps.SupplierId).SupName;

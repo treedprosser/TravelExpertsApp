@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TravelData;
+using TravelData2;
 
 namespace TravelExpertsApp
 {
@@ -92,11 +93,20 @@ namespace TravelExpertsApp
 			using(TravelExpertsContext db = new TravelExpertsContext())
 			{
 				Package modPackage = db.Packages.Find(package.PackageId);
-				//modPackage.ProductSuppliers.Clear(); this doesnt work
+
+				foreach (PackagesProductsSupplier ps in db.PackagesProductsSuppliers.Where(p => p.PackageId == modPackage.PackageId))
+				{
+					db.Entry(ps).State = EntityState.Deleted;
+				}
 				foreach (ProductsSupplier ps in productsSuppliers)
 				{
-					modPackage.ProductSuppliers
-						.Add(db.ProductsSuppliers.Find(ps.ProductSupplierId));
+					db.Entry(
+						new PackagesProductsSupplier()
+						{
+							ProductSupplierId = ps.ProductSupplierId,
+							PackageId = modPackage.PackageId
+						})
+						.State = EntityState.Added;
 				}
 
 				modPackage.PkgName = package.PkgName;
@@ -115,11 +125,15 @@ namespace TravelExpertsApp
 		{
 			using (TravelExpertsContext db = new TravelExpertsContext())
 			{
-				package.ProductSuppliers.Clear();
+				package.PackagesProductsSuppliers.Clear();
 				foreach (ProductsSupplier ps in productsSuppliers)
 				{
-					package.ProductSuppliers
-						.Add(db.ProductsSuppliers.Find(ps.ProductSupplierId));
+					package.PackagesProductsSuppliers
+						.Add(new PackagesProductsSupplier()
+						{
+							PackageId = package.PackageId,
+							ProductSupplierId = ps.ProductSupplierId
+						});
 				}
 
 				db.Add(package);

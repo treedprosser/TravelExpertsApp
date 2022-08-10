@@ -5,7 +5,9 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelExpertsApp", "TravelExpertsApp\TravelExpertsApp.csproj", "{1DB637FC-5589-493A-B591-FB932357AD1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelData", "TravelData\TravelData.csproj", "{D61D8392-575C-4A79-B0C2-71C14B627AE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelData", "TravelData\TravelData.csproj", "{D61D8392-575C-4A79-B0C2-71C14B627AE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelData2", "TravelData2\TravelData2.csproj", "{87389D11-AD1A-441D-A30F-D262BB040BF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D61D8392-575C-4A79-B0C2-71C14B627AE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D61D8392-575C-4A79-B0C2-71C14B627AE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D61D8392-575C-4A79-B0C2-71C14B627AE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87389D11-AD1A-441D-A30F-D262BB040BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87389D11-AD1A-441D-A30F-D262BB040BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87389D11-AD1A-441D-A30F-D262BB040BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87389D11-AD1A-441D-A30F-D262BB040BF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
