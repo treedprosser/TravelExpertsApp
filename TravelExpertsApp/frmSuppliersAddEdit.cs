@@ -17,18 +17,12 @@ namespace TravelExpertsApp
         {
             InitializeComponent();
             this.formAction = formAction;
-            SupplierID = supplierID;
             this.supplierName = supplierName;
         }
 
         private string formAction;
-        private int SupplierID;
         private string supplierName;
-
-
-
-
-
+        private int supplierID = 13567;
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
@@ -37,7 +31,6 @@ namespace TravelExpertsApp
 
             // Get a list of all textBoxes to be validated
             List<TextBox> textBoxList = new();
-            textBoxList.Add(txtBoxSupID);
             textBoxList.Add(txtBoxSupName);
 
             //Validation
@@ -51,7 +44,6 @@ namespace TravelExpertsApp
 
             }
 
-
             if (valid)
             {
 
@@ -60,8 +52,6 @@ namespace TravelExpertsApp
                 {
                     //If the form action is "add"
                     case "add":
-
-
 
                         // Confirm if they want to save the change
                         DialogResult confirm = MessageBox.Show("Are you sure you want to save these changes?", "Confirm Changes", MessageBoxButtons.YesNo);
@@ -72,8 +62,8 @@ namespace TravelExpertsApp
 
                             //adding value to blank object from textbox
                             newSupplier.SupName = txtBoxSupName.Text;
-                            newSupplier.SupplierId = Convert.ToInt32(txtBoxSupID.Text);
-
+                            newSupplier.SupplierId = supplierID;
+                            supplierID++;
 
                             // Open a connection to the database
                             using (TravelExpertsContext db = new TravelExpertsContext())
@@ -84,14 +74,11 @@ namespace TravelExpertsApp
                                 db.SaveChanges();
                             }
 
-
                         }
 
                         break;
 
                     case "edit":
-
-
 
                         // Confirm if they want to save the change
                         DialogResult confirmEdit = MessageBox.Show("Are you sure you want to save these changes?", "Confirm Changes", MessageBoxButtons.YesNo);
@@ -102,13 +89,11 @@ namespace TravelExpertsApp
 
                             //set blank obj values from selected supplier from the main form
                             newSupplier.SupName = supplierName;
-                            newSupplier.SupplierId = SupplierID;
 
                             // creating blank object to be updated/added
                             Supplier updatedSupplier = new Supplier();
 
                             // update blank object from textbox input
-                            updatedSupplier.SupplierId = Convert.ToInt32(txtBoxSupID.Text);
                             updatedSupplier.SupName = txtBoxSupName.Text;
 
                             // Open a connection to the database
@@ -126,11 +111,10 @@ namespace TravelExpertsApp
 
                         break;
                 }
-
-
-
-
             }
+            frmMain frmMain = new frmMain();
+            frmMain.Show();
+            this.Close();
         }
 
         private void frmSuppliersAddEdit_Load(object sender, EventArgs e)
@@ -143,13 +127,12 @@ namespace TravelExpertsApp
                 // Form action "add"
                 case "add":
 
-                    // Sets the form text to "add product"
+                    // Sets the form text to "add supplier"
                     this.Text = "Add Supplier";
 
-                    // Set the active control to product name
+                    // Set the active control to supplier name
                     this.ActiveControl = txtBoxSupName;
 
-                    txtBoxSupID.Text = "";
                     txtBoxSupName.Text = "";
 
                     break;
@@ -163,7 +146,6 @@ namespace TravelExpertsApp
                     // Set the active control to supplier name
                     this.ActiveControl = txtBoxSupName;
                     txtBoxSupName.Text = supplierName;
-                    txtBoxSupID.Text = SupplierID.ToString();
                     break;
             }
         }

@@ -12,6 +12,11 @@ using TravelData;
 
 namespace TravelExpertsApp
 {
+    /*
+     * Form to add/Edit Products
+     * Author: Trevor
+     * Date: July 2022
+     */
     public partial class frmProductsAddEdit : Form
     {
         // Public data - set from the main form
@@ -42,6 +47,7 @@ namespace TravelExpertsApp
         {
             if (currentProduct != null)
             {
+                // Display the name of the current product
                 txtProductName.Text = currentProduct.ProdName;
             }
             else
@@ -55,7 +61,7 @@ namespace TravelExpertsApp
         {
             if (Validator.IsPresent(txtProductName))
             {
-                if (isAdd)
+                if (isAdd) // Adding a new product
                 {
                     currentProduct = new Product();
                 }
