@@ -316,5 +316,10 @@ namespace TravelExpertsApp
 				selectedPackageId = (int)s.SelectedRows[0].Cells[0].Value;
 			}
 		}
-	}
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+    }
 }
