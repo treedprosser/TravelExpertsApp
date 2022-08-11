@@ -11,6 +11,11 @@ using TravelData;
 
 namespace TravelExpertsApp
 {
+    /// <summary>
+    /// Add/ Edit Supplier - 
+    /// Hilmi Ah
+    /// Aug 2022
+    /// </summary>
     public partial class frmSuppliersAddEdit : Form
     {
         public frmSuppliersAddEdit(string formAction, int supplierID, string supplierName)
