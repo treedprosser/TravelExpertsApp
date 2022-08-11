@@ -4,6 +4,8 @@ namespace TravelExpertsApp
 {
     /// <summary>
     /// A repository of validation methods
+    /// Author: Brianna Gibson 
+    /// Date: August 2022
     /// </summary>
     public static class Validator
     {
